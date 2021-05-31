@@ -1,0 +1,29 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+main()
+{
+   long long int n,s=0,c=0;
+   cin>>n;
+   while(n!=0)
+   {
+       if(n%10==7||n%10==4)
+        s++;
+       n/=10;
+   }
+   while(s!=0)
+   {
+       if(s%10==7||s%10==4)
+        c=1;
+        else
+        {
+            c=0;
+            break;
+        }
+       s/=10;
+   }
+   if(c==0)
+    cout<<"NO\n";
+   else
+    cout<<"YES\n";
+}
