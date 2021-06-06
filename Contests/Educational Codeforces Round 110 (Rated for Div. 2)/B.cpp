@@ -66,11 +66,11 @@ int main()
                 am= 0; // among them
                 v = am + mpp[a[i]]*e;
                 tt-=mpp[a[i]];
-                while(a[i+1]==1)
+                while(i<n-1 && a[i+1]==1)
                     i++;
 
-//                pppp(am,nn);
-//                pppp("  if   v  = ",v ),newline;
+                pppp(am,nn);
+                pppp("  if   v  = ",v ),newline;
 
 
             }
@@ -81,11 +81,11 @@ int main()
                 tt-=mpp[a[i]];
                 e-=mpp[a[i]];
                 v+= am + mpp[a[i]]*tt;
-                while(a[i+1]==nn)
+                while(i<n-1 && a[i+1]==nn)
                     i++;
 
-//                pppp(am,nn);
-//                pppp("  else   v  = ",v ),newline;
+                pppp(am,nn);
+                pppp("  else   v  = ",v ),newline;
 
 
             }
@@ -97,20 +97,26 @@ int main()
                     am= (am*(am+1))/2; // among them
                     tt-=mpp[a[i]];
 
-                    v+= am + mpp[a[i]]*e;
-                    while(a[i+1]==nn)
+                    v+= am + mpp[a[i]]*e; //with all even numbers that are left
+                    while(i<n-1 && a[i+1]==nn)
                         i++;
                     for(int j= i+1; j<n; j++)
                     {
                         if(a[j]%2==1 && !checkPrime(a[j]))
                         {
+                            d=a[j];
                             if(__gcd(a[j],nn)>1)
-                                v++;
+                            {
+                                v+=mpp[a[i]]*mpp[a[j]];
+                            while(j<n-1 && a[j+1]==a[j] )
+                                j++;
+                            }
+
                         }
                     }
 
-//                    pppp(am,nn);
-//                    pppp("  pr   v  = ",v ),newline;
+                    pppp(am,nn);
+                    pppp("  pr   v  = ",v ),newline;
 
 
                 }
@@ -121,21 +127,23 @@ int main()
                     am= (am*(am+1))/2; // among them
                     tt-=mpp[a[i]];
 
-                    v+= am + mpp[a[i]]*e;
-                    while(a[i+1]==nn)
+                    v+= am + mpp[a[i]]*e; //with all even numbers that are left
+                    while(i<n-1 && a[i+1]==nn)
                         i++;
 
                     for(int j= i+1; j<n; j++)
                     {
-                        if(a[j]%2==1)
+                        d=a[j];
+                        if(__gcd(a[j],nn)>1)
                         {
-                            if(__gcd(a[j],nn)>1)
-                                v++;
+                            v+=mpp[a[i]]*mpp[a[j]];
+                            while(j<n-1 && a[j+1]==a[j] )
+                                j++;
                         }
                     }
 
-//                    pppp(am,nn);
-//                    pppp("  npr   v  = ",v ),newline;
+                    pppp(am,nn);
+                    pppp("  npr   v  = ",v ),newline;
 
 
                 }
