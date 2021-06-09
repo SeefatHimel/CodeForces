@@ -25,7 +25,7 @@ using namespace std;
 
 int main()
 {
-    ll t,n,v,a[650],ng, e, mx, o,mn,gc,z;
+    ll t,n,v,a[650],ng, e, mx, o,mn,gc,z,g;
 
     cin>>t;
 
@@ -41,53 +41,23 @@ int main()
             a[i]=v;
             if(v<0)
                 ng=1;
-            if(v%2==0)
-                e=1;
-            if(v%2==1)
-                o=1;
+
             if(v>mx)
                 mx=v;
-            if(v>0 && v<mn)
-                mn=v;
-                if(v==0)
-                    z=1;
 
         }
-        sort(a,a+n);
-        gc = mx;
-        for(int i=0;i<n;i++)
-        {
-            if(a[i]>0)
-            {
-               if(__gcd(mn, a[i])<gc)
-                    gc=__gcd(mn, a[i]);
-            }
-        }
-        if(ng==1 || (o==1 && mx>300) || (e==1 && mx>600))
+        if(ng)
             ppp("NO");
         else
         {
             ppp("YES");
-            v=mx/gc;
-            if(z==1)
-                v++;
-            ppp(v);
-
-            if(z==1)
-                mn=0;
-            mn=min(mn,gc);
-            e = mn/gc;
-            if(mn==gc)
-                e=gc;
-//            pppp("\t mx = ",mx),
-//            pppp(" mn = ",mn),
-//            pppp(" gc = ",gc),
-//            pppp(" mc/gc = ",mn/gc), newline;
-
-                for(int j=e; j<mx; j+=gc)
-                    cout<<j<<" ";
-
+            ppp(mx+1);
+            for(int i=0; i<mx; i++)
+            {
+                pppp(i," ");
+            }
             ppp(mx);
+
         }
     }
 
