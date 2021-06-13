@@ -64,33 +64,50 @@ int main()
     while(t--)
     {
         cin>>n>>l>>r;
-        mn=inf;
-        b=0;
+        mn=-1;
+        b=0;  // ans
         for(int i=0; i<n; i++)
         {
             cin>>v;
             a[i]=v;
-            if(v>r)
-                mn=min(v,mn);
+            if(v<r)
+                mn=max(v,mn); // max value which is less than r
 
         }
 
         sort(a,a+n);
         p=binarySearch(a, 0, n - 1, mn);
 
+        while(p<n-1 && a[p+1]==mn)  // getting the max position
+        p++;
+
 //        pppp("   p   ",p),newline;
 
 
-        for(int i=p-1 ; i>0; i--)
+        for(int i=p ; i>0; i--)
         {
             v=a[i];
 
             d = l-v;
             dd= r-v ;
-            q=binarySearch(a, 0, i- 1, d);
-            qq=binarySearch(a, 0, i - 1, dd);
+            q=binarySearch(a, 0, i- 1, d);  //  lower limit
+            qq=binarySearch(a, 0, i - 1, dd);  // upper limit
+            while(qq>=0 && a[qq]>dd)
+                qq--;
 
+            while(qq<i-1 && a[qq+1]== a[qq])
+                qq++;
+            while(q>0 && a[q-1]==a[q])
+                q--;
+            if(qq==i)
+                qq--;
             an = qq-q +1 ;
+
+            d= a[q]+v;
+            dd= a[qq]+v;
+
+            if(d>r || dd<l)
+                continue;
 
             if(qq>=i)
                 an = i-q;
@@ -116,5 +133,15 @@ int main()
 4
 5 5 8
 5 1 2 4 3
+
+5
+5 3 3
+3 1 4 1 4
+
+
+5
+5 4 8
+5 1 1 5 1
+
 
 */
